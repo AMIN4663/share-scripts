@@ -1,6 +1,7 @@
-
 from datetime import datetime
 import random
+
+
 def timer_decorator(func):
     def wrapper(*args, **kwargs):
         start_time = datetime.now()
@@ -22,6 +23,13 @@ def simulate_weather(days, start_temp = 25):
     for i in range(1, days):
         change = random.randint(-2, 3)
         temps.append(temps[-1] + change)
-    return temps
+    max_temp = max(temps)
+    min_temp = min(temps)
+    avg_temp = sum(temps) / len(temps)
+
+    return f"max_temp: {max_temp}, min_temp: {min_temp}, avg_temp: {avg_temp} temps: {temps}"
+
 result = simulate_weather(10)
 print(result)
+
+

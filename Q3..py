@@ -1,13 +1,36 @@
 
+
+
 from datetime import datetime
+import random
 def timer_decorator(func):
     def wrapper(*args, **kwargs):
         start_time = datetime.now()
-        result = func(*args, **kwargs)
+        try:
+            result = func(*args, **kwargs)
+        except Exception:
+            print("Error in running the function.")
+            result = None
         print(f"start: {start_time}")
         return result
     return wrapper
+
 @timer_decorator
-def decorated_function():
-    print("decorated function")
-decorated_function()
+def simulate_weather(days, start_temp = 25):
+    if not isinstance(days, int) or days < 0:
+        print("Invalid input")
+        return []
+    temps = [start_temp]
+    for i in range(1, days):
+        change = random.randint(-2, 3)
+        temps.append(temps[-1] + change)
+    max_temp = max(temps)
+    min_temp = min(temps)
+    avg_temp = sum(temps) / len(temps)
+
+    return f"max_temp: {max_temp}, min_temp: {min_temp}, avg_temp: {avg_temp} temps: {temps}"
+
+result = simulate_weather(10)
+print(result)
+
+

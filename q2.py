@@ -24,5 +24,7 @@ def number_info(n):
     final_lst = {i: odd_lst[i] for i in mykeys}
     print(final_lst)
 
+    only_values = list(map(lambda x: x, final_lst.values()))
+    print(only_values)
 
 number_info(5)
